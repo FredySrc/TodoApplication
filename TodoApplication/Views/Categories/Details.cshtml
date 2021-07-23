@@ -1,0 +1,23 @@
+﻿@model TodoApplication.Models.Category
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.CategoryID"><i class="fas fa-sticky-note"></i> Editar</a>
+    <a asp-action="Index" class="btn btn-success"><i class="fas fa-fast-backward"></i> Regressar</a>
+</div>

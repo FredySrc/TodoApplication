@@ -1,0 +1,84 @@
+﻿@model IEnumerable<TodoApplication.Models.TodoNote>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-2 border border-dark rounded">
+            <div class="row search">
+                <h4 class="m-auto">Categorías</h4>
+                <div class="col-auto">
+                    <input type="text" id="txtSearch" placeholder="Nombre Categoría" class="form-control-plaintext" />
+                </div>
+                <div class="col-auto">
+                    <a asp-action="Index" class="btn btn-info"> Filtrar o Agrupar</a>
+                </div>
+            </div>
+            <div class="row search text-center">
+                <p>Para ver, editar y borrar categorías click a continuación</p>
+                <a asp-controller="Categories" class="btn btn-primary m-auto" asp-action="Index">Gestionar Categorías</a>
+            </div>
+        </div>
+
+        <div class="col-sm-10">
+            <p>
+                <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i> Nueva Nota</a>
+            </p>
+            <table class="table-responsive table-bordered border-dark">
+                <thead class="table-primary ">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StarDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DueTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsComplete)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Categorie.CategoryName)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StarDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DueTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsComplete)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Categorie.CategoryName)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.TodoNoteID"><i class="fas fa-sticky-note"></i> Editar</a>
+                                <a asp-action="Details" class="btn btn-success" asp-route-id="@item.TodoNoteID"><i class="fas fa-file-archive"></i> Detalles</a>
+                                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.TodoNoteID"><i class="fas fa-trash-restore"></i> Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/common.css" />
+<script src="~/js/register_search.js" asp-append-version="true"></script>

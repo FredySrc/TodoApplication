@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TodoApplication.Models.Category>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<h1>Categorías</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus-circle"></i> Nueva Nota</a>
+    <a asp-controller="TodoNotes" asp-action="Index" class="btn btn-warning"><i class="fas fa-fast-backward"></i> Regresar Inicio</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.CategoryID"><i class="fas fa-sticky-note"></i> Editar</a>
+                    <a asp-action="Details" class="btn btn-success" asp-route-id="@item.CategoryID"><i class="fas fa-file-archive"></i> Detalles</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.CategoryID"><i class="fas fa-trash-restore"></i> Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
